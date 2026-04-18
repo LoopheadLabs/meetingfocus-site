@@ -1,0 +1,216 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Privacy Policy | MeetingFocus</title>
+  <meta name="description" content="MeetingFocus stores all data locally. No servers, no analytics, no telemetry.">
+  <meta name="theme-color" content="#0f172a">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%234f46e5'/%3E%3Cpath d='M20 24v16M32 18v28M44 26v12' stroke='white' stroke-width='5' stroke-linecap='round'/%3E%3C/svg%3E">
+
+  <style>
+    :root {
+      --bg: #f8fafc;
+      --surface: #ffffff;
+      --ink: #0f172a;
+      --ink-soft: #475569;
+      --line: #e2e8f0;
+      --accent: #4f46e5;
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      color: var(--ink);
+      background: var(--bg);
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    .wrap { max-width: 760px; margin: 0 auto; padding: 0 24px; }
+
+    header {
+      padding: 24px 0;
+      border-bottom: 1px solid var(--line);
+      background: var(--surface);
+    }
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 700;
+      font-size: 17px;
+      color: var(--ink);
+    }
+    .brand-mark {
+      width: 26px; height: 26px; border-radius: 7px;
+      background: var(--accent);
+      display: inline-flex; align-items: center; justify-content: center;
+      color: white; font-weight: 800; font-size: 12px;
+    }
+    .nav-links { display: flex; gap: 22px; font-size: 14px; color: var(--ink-soft); }
+    .nav-links a { color: var(--ink-soft); }
+
+    article {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 40px 44px;
+      margin: 40px auto;
+    }
+    article h1 {
+      font-size: 32px;
+      letter-spacing: -0.02em;
+      margin: 0 0 8px;
+    }
+    .meta {
+      color: var(--ink-soft);
+      font-size: 14px;
+      margin-bottom: 28px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid var(--line);
+    }
+    article h2 {
+      font-size: 20px;
+      letter-spacing: -0.01em;
+      margin: 36px 0 12px;
+    }
+    article p, article li {
+      color: var(--ink);
+      font-size: 15.5px;
+    }
+    article ul {
+      padding-left: 22px;
+    }
+    article li {
+      margin: 6px 0;
+    }
+    article strong { font-weight: 600; }
+    .callout {
+      background: rgba(79, 70, 229, 0.06);
+      border-left: 3px solid var(--accent);
+      padding: 14px 18px;
+      border-radius: 6px;
+      margin: 18px 0;
+      font-size: 15.5px;
+    }
+
+    footer {
+      padding: 24px 0 56px;
+      color: var(--ink-soft);
+      font-size: 13.5px;
+      text-align: center;
+    }
+    footer a { color: var(--ink-soft); }
+
+    @media (max-width: 600px) {
+      article { padding: 28px 22px; margin: 24px auto; border-radius: 0; border-left: 0; border-right: 0; }
+      .nav-links { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a href="/" class="brand">
+      <span class="brand-mark">M</span>
+      <span>MeetingFocus</span>
+    </a>
+    <nav class="nav-links">
+      <a href="/#features">Features</a>
+      <a href="/#pricing">Pricing</a>
+      <a href="/privacy.html">Privacy</a>
+    </nav>
+  </div>
+</header>
+
+<div class="wrap">
+  <article>
+    <h1>MeetingFocus Privacy Policy</h1>
+    <div class="meta">
+      <strong>Effective Date:</strong> April 2026 &nbsp;·&nbsp;
+      <strong>Publisher:</strong> Loophead Labs LLC
+    </div>
+
+    <p>This Privacy Policy applies to the MeetingFocus browser extension ("MeetingFocus", "the extension") published by Loophead Labs LLC ("we", "us", or "our"). It is consistent with the general Loophead Labs privacy policy; this page covers the extension-specific details that the Chrome Web Store requires publishers to disclose.</p>
+
+    <p>We are committed to protecting your privacy. This policy explains what data the extension accesses, how it is used, and your rights regarding that data.</p>
+
+    <h2>1. What MeetingFocus Does</h2>
+    <p>MeetingFocus is a productivity extension that detects when you join a video meeting on Google Meet, Zoom, or Microsoft Teams, and automatically mutes your other browser tabs until the meeting ends. Its paid tier adds features such as session restore and meeting history.</p>
+
+    <h2>2. Data We Collect</h2>
+    <div class="callout"><strong>We do not operate any servers and we do not collect, transmit, or store any of your personal data on remote systems.</strong></div>
+
+    <p>Everything MeetingFocus needs to function is stored locally in your browser using Chrome's built-in <code>storage.local</code> API. This includes:</p>
+    <ul>
+      <li>Your allowlist of domains that should stay unmuted during meetings (e.g. <code>spotify.com</code>) if you have chosen to configure one.</li>
+      <li>Your extension preferences (such as whether the "upgrade" banner has been dismissed).</li>
+      <li>On the paid tier only: a local meeting history log containing meeting duration, platform name (Google Meet, Zoom, Teams), number of tabs muted, and timestamp. This log never leaves your device.</li>
+      <li>On the paid tier only: a temporary snapshot of open tab URLs captured at the start of a meeting, used solely to offer session restore if tabs are closed during the call. This snapshot is erased when the meeting ends.</li>
+    </ul>
+
+    <p>We do not collect or transmit:</p>
+    <ul>
+      <li>Your name, email address, or any account identifier tied to you personally.</li>
+      <li>The contents of any meeting, page, or tab.</li>
+      <li>Your browsing history outside of meeting detection.</li>
+      <li>Audio, video, microphone, or camera data. MeetingFocus never accesses your microphone or camera.</li>
+      <li>Analytics, telemetry, crash reports, or usage metrics.</li>
+    </ul>
+
+    <h2>3. Permissions</h2>
+    <p>MeetingFocus requests the following Chrome permissions, and uses each only for the stated purpose:</p>
+    <ul>
+      <li><strong><code>tabs</code>:</strong> to detect which tab contains your meeting and to mute or unmute other tabs.</li>
+      <li><strong><code>storage</code>:</strong> to save your allowlist, preferences, and (on the paid tier) your local meeting history.</li>
+      <li><strong><code>alarms</code>:</strong> to keep the service worker responsive during an active meeting.</li>
+      <li><strong>Host permissions</strong> for <code>meet.google.com</code>, <code>*.zoom.us</code>, <code>app.zoom.us</code>, <code>teams.microsoft.com</code>, and <code>teams.live.com</code>: to recognize when a tab is on a supported meeting URL. The extension does not read page content on these domains.</li>
+      <li><strong><code>&lt;all_urls&gt;</code> in content scripts:</strong> on the Pro tier, MeetingFocus injects a small content script into non-meeting tabs to suppress web-based notifications during your call. The script intercepts the browser Notification API and does nothing else. It does not read, modify, or transmit page content.</li>
+    </ul>
+
+    <h2>4. Third-Party Services</h2>
+    <p>MeetingFocus uses a single third-party service, and only on the paid tier:</p>
+    <ul>
+      <li><strong>ExtensionPay</strong> (operated by Glench, LLC), which uses <strong>Stripe</strong> to process one-time payments. When you click Upgrade, you are redirected to Stripe Checkout. We never see or store your payment card details. ExtensionPay and Stripe handle that data under their own privacy policies, available at <a href="https://extensionpay.com">extensionpay.com</a> and <a href="https://stripe.com/privacy">stripe.com/privacy</a>.</li>
+    </ul>
+    <p>We do not use analytics providers (no Google Analytics, no Firebase, no Mixpanel), advertising networks, or tracking pixels. We do not sell, rent, or share any data with third parties for any purpose.</p>
+
+    <h2>5. Children's Privacy</h2>
+    <p>MeetingFocus is not directed at children under 13. We do not knowingly collect data from children. If you believe a child has used the extension in a way that raises concern, please contact us.</p>
+
+    <h2>6. Data Security</h2>
+    <p>Because MeetingFocus stores all of its data locally on your device using Chrome's built-in storage, the security of that data is a function of your device and your Chrome profile. We encourage you to keep your browser and operating system up to date. Payment data is handled entirely by Stripe, which is PCI-DSS certified and uses industry-standard encryption.</p>
+
+    <h2>7. Your Rights and Choices</h2>
+    <p>You can remove all data MeetingFocus has stored by:</p>
+    <ul>
+      <li>Opening the extension's Settings page and clicking <strong>Reset all data</strong>, or</li>
+      <li>Uninstalling the extension from <code>chrome://extensions</code>. Uninstalling clears all local data.</li>
+    </ul>
+    <p>Because we do not operate any servers and hold no personal data, there is nothing further to delete on our end.</p>
+
+    <h2>8. Policy Changes</h2>
+    <p>We may update this Privacy Policy as the extension evolves. Changes will be posted at this URL and reflected by the Effective Date above. Material changes will also be noted in the extension's release notes on the Chrome Web Store.</p>
+
+    <h2>9. Contact</h2>
+    <p>For questions about this Privacy Policy or MeetingFocus, please contact: <strong><a href="mailto:dev@loopheadlabs.com">dev@loopheadlabs.com</a></strong></p>
+  </article>
+</div>
+
+<footer>
+  © 2026 Loophead Labs LLC &nbsp;·&nbsp; <a href="/">meetingfocus.app</a>
+</footer>
+
+</body>
+</html>

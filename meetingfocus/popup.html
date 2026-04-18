@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MeetingFocus</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <!-- Idle state -->
+  <div id="idle-view" class="view">
+    <div class="header">
+      <div class="logo">
+        <img src="icons/icon-48.png" alt="MeetingFocus" width="24" height="24">
+        <span class="title">MeetingFocus</span>
+      </div>
+    </div>
+    <div class="status idle">
+      <div class="status-dot"></div>
+      <span>Watching for meetings</span>
+    </div>
+    <p class="hint">Join a Google Meet, Zoom, or Teams call and MeetingFocus will auto-mute your other tabs.</p>
+    <!-- Profile selector (Pro) -->
+    <div id="profile-selector" class="section hidden">
+      <div class="section-header">
+        <span>Profile</span>
+        <span class="pro-badge-inline">PRO</span>
+      </div>
+      <div class="profile-picker" id="profile-picker"></div>
+    </div>
+    <button id="force-activate-btn" class="btn btn-secondary">Activate now</button>
+    <div class="divider"></div>
+    <div class="section">
+      <div class="section-header">
+        <span>Allowlist</span>
+        <span class="badge" id="allowlist-count">0</span>
+      </div>
+      <p class="hint">These sites stay unmuted during meetings.</p>
+      <div id="allowlist-items"></div>
+      <div class="allowlist-add">
+        <input type="text" id="allowlist-input" placeholder="e.g. spotify.com" maxlength="100">
+        <button id="allowlist-add-btn" class="btn btn-small">Add</button>
+      </div>
+      <p class="hint" id="allowlist-limit-msg"></p>
+    </div>
+  </div>
+
+  <!-- Active meeting state -->
+  <div id="active-view" class="view hidden">
+    <div class="header">
+      <div class="logo">
+        <img src="icons/icon-48-active.png" alt="MeetingFocus" width="24" height="24">
+        <span class="title">MeetingFocus</span>
+      </div>
+    </div>
+    <div class="status active">
+      <div class="status-dot"></div>
+      <span id="meeting-platform">In a meeting</span>
+    </div>
+    <div class="stats">
+      <div class="stat">
+        <span class="stat-value" id="muted-count">0</span>
+        <span class="stat-label">tabs muted</span>
+      </div>
+      <div class="stat">
+        <span class="stat-value" id="meeting-duration">0:00</span>
+        <span class="stat-label">duration</span>
+      </div>
+    </div>
+    <div id="active-profile-info" class="hint new-tab-hint hidden">
+      <span id="active-profile-name"></span>
+    </div>
+    <div id="notif-indicator" class="hint new-tab-hint hidden">
+      Notifications silenced
+    </div>
+    <p class="hint new-tab-hint">New tabs will open muted until focus ends.</p>
+    <button id="end-focus-btn" class="btn btn-primary">End focus</button>
+  </div>
+
+  <!-- Restore prompt (paid) -->
+  <div id="restore-view" class="view hidden">
+    <div class="header">
+      <div class="logo">
+        <img src="icons/icon-48.png" alt="MeetingFocus" width="24" height="24">
+        <span class="title">MeetingFocus</span>
+      </div>
+    </div>
+    <div class="status idle">
+      <div class="status-dot"></div>
+      <span>Meeting ended</span>
+    </div>
+    <p class="hint"><span id="restore-count">0</span> tabs were closed during your meeting.</p>
+    <button id="restore-btn" class="btn btn-primary">Restore tabs</button>
+    <button id="dismiss-restore-btn" class="btn btn-secondary">Dismiss</button>
+  </div>
+
+  <!-- Upgrade prompt -->
+  <div id="upgrade-banner" class="hidden">
+    <div class="upgrade-content">
+      <span>Unlock notification silencing, profiles, and more</span>
+      <button id="upgrade-btn" class="btn btn-small btn-accent">Upgrade $9.99</button>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    <a href="#" id="options-link">Settings</a>
+    <span class="version">v0.2.0</span>
+  </div>
+
+  <script src="ExtPay.js"></script>
+  <script src="popup.js"></script>
+</body>
+</html>

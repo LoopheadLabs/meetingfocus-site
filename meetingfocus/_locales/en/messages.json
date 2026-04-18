@@ -1,0 +1,10 @@
+{
+  "appName": {
+    "message": "MeetingFocus",
+    "description": "The name of the extension"
+  },
+  "appDescription": {
+    "message": "Auto-mutes every tab when you join a video call. Restores them when you hang up.",
+    "description": "The description of the extension"
+  }
+}

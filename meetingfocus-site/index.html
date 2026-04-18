@@ -1,0 +1,417 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MeetingFocus: Auto-mute every other tab during video calls</title>
+  <meta name="description" content="MeetingFocus auto-mutes every other browser tab the moment you join a Google Meet, Zoom, or Microsoft Teams call. Restores them when the call ends.">
+  <meta name="theme-color" content="#0f172a">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%234f46e5'/%3E%3Cpath d='M20 24v16M32 18v28M44 26v12' stroke='white' stroke-width='5' stroke-linecap='round'/%3E%3C/svg%3E">
+
+  <meta property="og:title" content="MeetingFocus">
+  <meta property="og:description" content="Auto-mute every other tab the moment you join a Meet, Zoom, or Teams call.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://meetingfocus.app">
+
+  <style>
+    :root {
+      --bg: #f8fafc;
+      --surface: #ffffff;
+      --ink: #0f172a;
+      --ink-soft: #475569;
+      --line: #e2e8f0;
+      --accent: #4f46e5;
+      --accent-hover: #4338ca;
+      --shadow: 0 1px 2px rgba(15, 23, 42, 0.04), 0 8px 24px rgba(15, 23, 42, 0.06);
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      color: var(--ink);
+      background: var(--bg);
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    .wrap { max-width: 920px; margin: 0 auto; padding: 0 24px; }
+
+    header {
+      padding: 28px 0;
+      border-bottom: 1px solid var(--line);
+      background: var(--surface);
+    }
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 700;
+      font-size: 18px;
+      color: var(--ink);
+    }
+    .brand-mark {
+      width: 28px; height: 28px; border-radius: 7px;
+      background: var(--accent);
+      display: inline-flex; align-items: center; justify-content: center;
+      color: white; font-weight: 800; font-size: 13px;
+    }
+    .nav-links { display: flex; gap: 22px; font-size: 15px; color: var(--ink-soft); }
+    .nav-links a { color: var(--ink-soft); }
+
+    .hero {
+      padding: 80px 0 56px;
+      text-align: center;
+    }
+    .eyebrow {
+      display: inline-block;
+      font-size: 12px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 600;
+      margin-bottom: 18px;
+    }
+    h1 {
+      font-size: clamp(34px, 5vw, 52px);
+      line-height: 1.1;
+      margin: 0 0 18px;
+      letter-spacing: -0.02em;
+    }
+    .subhead {
+      font-size: clamp(17px, 2vw, 19px);
+      color: var(--ink-soft);
+      max-width: 620px;
+      margin: 0 auto 32px;
+    }
+    .cta-row {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 13px 22px;
+      border-radius: 10px;
+      font-weight: 600;
+      font-size: 15px;
+      transition: all 0.15s ease;
+      border: 1px solid transparent;
+    }
+    .btn-primary {
+      background: var(--accent);
+      color: white;
+    }
+    .btn-primary:hover {
+      background: var(--accent-hover);
+      text-decoration: none;
+    }
+    .btn-secondary {
+      background: transparent;
+      color: var(--ink);
+      border-color: var(--line);
+    }
+    .btn-secondary:hover {
+      border-color: var(--ink-soft);
+      text-decoration: none;
+    }
+    .meta-line {
+      margin-top: 18px;
+      font-size: 13px;
+      color: var(--ink-soft);
+    }
+
+    .platforms {
+      padding: 40px 0;
+      text-align: center;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      background: var(--surface);
+    }
+    .platforms-label {
+      font-size: 12px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+      margin-bottom: 16px;
+    }
+    .platforms-list {
+      display: flex;
+      justify-content: center;
+      gap: 36px;
+      flex-wrap: wrap;
+      font-weight: 600;
+      color: var(--ink);
+    }
+
+    .features {
+      padding: 72px 0;
+    }
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 24px;
+      margin-top: 8px;
+    }
+    .feature {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 24px;
+      box-shadow: var(--shadow);
+    }
+    .feature h3 {
+      margin: 12px 0 8px;
+      font-size: 17px;
+      letter-spacing: -0.01em;
+    }
+    .feature p {
+      margin: 0;
+      color: var(--ink-soft);
+      font-size: 15px;
+    }
+    .feature-icon {
+      width: 36px; height: 36px;
+      border-radius: 9px;
+      background: rgba(79, 70, 229, 0.1);
+      color: var(--accent);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+    }
+
+    .pricing {
+      padding: 56px 0 72px;
+      background: var(--surface);
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+    .pricing-head {
+      text-align: center;
+      margin-bottom: 32px;
+    }
+    .pricing-head h2 {
+      margin: 0 0 8px;
+      font-size: 28px;
+      letter-spacing: -0.01em;
+    }
+    .pricing-head p {
+      margin: 0;
+      color: var(--ink-soft);
+    }
+    .tiers {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 20px;
+    }
+    .tier {
+      background: var(--bg);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 24px;
+    }
+    .tier.pro {
+      border-color: var(--accent);
+      background: var(--surface);
+      box-shadow: var(--shadow);
+    }
+    .tier-name {
+      font-size: 13px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+      font-weight: 600;
+    }
+    .tier-price {
+      font-size: 30px;
+      font-weight: 700;
+      margin: 6px 0 16px;
+      letter-spacing: -0.02em;
+    }
+    .tier-price small {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--ink-soft);
+    }
+    .tier ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .tier li {
+      padding: 7px 0;
+      font-size: 15px;
+      color: var(--ink);
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+    }
+    .tier li::before {
+      content: "✓";
+      color: var(--accent);
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    footer {
+      padding: 36px 0 56px;
+      color: var(--ink-soft);
+      font-size: 14px;
+    }
+    .footer-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .footer-links { display: flex; gap: 22px; }
+    .footer-links a { color: var(--ink-soft); }
+
+    @media (max-width: 600px) {
+      .hero { padding: 56px 0 40px; }
+      .features { padding: 56px 0; }
+      .pricing { padding: 48px 0 56px; }
+      .nav-links { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a href="/" class="brand">
+      <span class="brand-mark">M</span>
+      <span>MeetingFocus</span>
+    </a>
+    <nav class="nav-links">
+      <a href="#features">Features</a>
+      <a href="#pricing">Pricing</a>
+      <a href="/privacy.html">Privacy</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <span class="eyebrow">Chrome Extension</span>
+    <h1>Stop scrambling to mute tabs<br>when a meeting starts.</h1>
+    <p class="subhead">
+      MeetingFocus auto-mutes every other browser tab and silences
+      notifications the moment you join a Google Meet, Zoom, or Microsoft
+      Teams call. When the call ends, everything comes back on its own.
+    </p>
+    <div class="cta-row">
+      <a class="btn btn-primary" href="#" rel="noopener">
+        Add to Chrome
+      </a>
+      <a class="btn btn-secondary" href="#features">See how it works</a>
+    </div>
+    <div class="meta-line">Free to install. Pro features one-time $9.99.</div>
+  </div>
+</section>
+
+<section class="platforms">
+  <div class="wrap">
+    <div class="platforms-label">Works with</div>
+    <div class="platforms-list">
+      <span>Google Meet</span>
+      <span>Zoom</span>
+      <span>Microsoft Teams</span>
+    </div>
+  </div>
+</section>
+
+<section class="features" id="features">
+  <div class="wrap">
+    <div class="features-grid">
+      <div class="feature">
+        <div class="feature-icon">⚡</div>
+        <h3>Instant, automatic mute</h3>
+        <p>The moment a Meet, Zoom, or Teams tab activates, every other tab gets muted. No clicks. No setup.</p>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">🔕</div>
+        <h3>Silence notifications too</h3>
+        <p>Pro blocks Slack, Discord, and Gmail alerts from popping up during your screen share. No more "anyone want tacos?" mid-presentation.</p>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">🎧</div>
+        <h3>Allowlist what you love</h3>
+        <p>Keep Spotify, YouTube Music, or any domain you want playing through your meetings. You stay in control.</p>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">🎛️</div>
+        <h3>Meeting profiles</h3>
+        <p>Standup keeps Slack audible. Presentation mutes everything. Create custom profiles for each type of call you take.</p>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">🔄</div>
+        <h3>Restores when you're done</h3>
+        <p>When the call ends, MeetingFocus puts every tab back to the exact mute state it was in before.</p>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">🛡️</div>
+        <h3>Local. Private. Server-free.</h3>
+        <p>Nothing leaves your device. No accounts, no tracking, no telemetry. Your meetings are your business.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="pricing" id="pricing">
+  <div class="wrap">
+    <div class="pricing-head">
+      <h2>Simple, one-time pricing</h2>
+      <p>Start free. Upgrade once if you want the power features.</p>
+    </div>
+    <div class="tiers">
+      <div class="tier">
+        <div class="tier-name">Free</div>
+        <div class="tier-price">$0</div>
+        <ul>
+          <li>Auto-mute on Meet, Zoom, Teams</li>
+          <li>Allowlist up to 3 sites (Spotify, YouTube, etc.)</li>
+          <li>Session restore: reopen tabs closed mid-meeting</li>
+          <li>Meeting history log</li>
+          <li>Keyboard shortcut to toggle focus</li>
+        </ul>
+      </div>
+      <div class="tier pro">
+        <div class="tier-name">Pro</div>
+        <div class="tier-price">$9.99 <small>one-time</small></div>
+        <ul>
+          <li>Everything in Free</li>
+          <li>Notification silencing: block Slack, Gmail, Discord alerts mid-call</li>
+          <li>Meeting profiles: named rulesets for standups, client calls, presentations</li>
+          <li>Unlimited allowlist domains</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap footer-row">
+    <div>© 2026 Loophead Labs LLC</div>
+    <div class="footer-links">
+      <a href="/privacy.html">Privacy Policy</a>
+      <a href="mailto:dev@loopheadlabs.com">Contact</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
