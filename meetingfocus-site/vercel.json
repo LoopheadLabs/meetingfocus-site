@@ -1,3 +1,4 @@
 {
-  "outputDirectory": "."
+  "buildCommand": "mkdir -p out && cp *.html out/",
+  "outputDirectory": "out"
 }
