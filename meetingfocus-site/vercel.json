@@ -1,5 +1,5 @@
 {
-  "buildCommand": "mkdir -p out && cp *.html out/ && cp robots.txt out/ && cp sitemap.xml out/ && cp -r assets out/assets",
+  "buildCommand": "npm run build",
   "outputDirectory": "out",
   "cleanUrls": true,
   "headers": [

@@ -1,0 +1,15 @@
+{
+  "name": "meetingfocus-site",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Static marketing site for the MeetingFocus Chrome extension.",
+  "scripts": {
+    "build": "mkdir -p out/assets && cp -r assets/. out/assets/ && esbuild src/analytics.js --bundle --minify --outfile=out/assets/analytics.js && cp *.html out/ && cp robots.txt out/ && cp sitemap.xml out/"
+  },
+  "dependencies": {
+    "@vercel/analytics": "^1.5.0"
+  },
+  "devDependencies": {
+    "esbuild": "^0.24.0"
+  }
+}
