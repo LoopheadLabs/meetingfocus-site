@@ -1,4 +1,19 @@
 {
-  "buildCommand": "mkdir -p out && cp *.html out/",
-  "outputDirectory": "out"
+  "buildCommand": "mkdir -p out && cp *.html out/ && cp robots.txt out/ && cp sitemap.xml out/ && cp -r assets out/assets",
+  "outputDirectory": "out",
+  "cleanUrls": true,
+  "headers": [
+    {
+      "source": "/assets/(.*)",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }
+      ]
+    },
+    {
+      "source": "/sitemap.xml",
+      "headers": [
+        { "key": "Content-Type", "value": "application/xml; charset=utf-8" }
+      ]
+    }
+  ]
 }

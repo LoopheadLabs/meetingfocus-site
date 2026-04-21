@@ -3,15 +3,69 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>MeetingFocus: Auto-mute every other tab during video calls</title>
-  <meta name="description" content="MeetingFocus auto-mutes every other browser tab the moment you join a Google Meet, Zoom, or Microsoft Teams call. Restores them when the call ends.">
+  <title>Auto-mute tabs during Zoom, Meet, Teams calls | MeetingFocus</title>
+  <meta name="description" content="MeetingFocus auto-mutes every other browser tab and silences notifications when you join a Google Meet, Zoom, or Microsoft Teams call.">
+  <meta name="keywords" content="auto mute tabs, mute chrome tabs, meeting extension, zoom tab mute, google meet mute tabs, microsoft teams mute, silence notifications during meeting, chrome extension meetings">
+  <meta name="author" content="Loophead Labs LLC">
   <meta name="theme-color" content="#0f172a">
+  <meta name="color-scheme" content="light">
+
+  <link rel="canonical" href="https://meetingfocus.app/">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%234f46e5'/%3E%3Cpath d='M20 24v16M32 18v28M44 26v12' stroke='white' stroke-width='5' stroke-linecap='round'/%3E%3C/svg%3E">
 
-  <meta property="og:title" content="MeetingFocus">
-  <meta property="og:description" content="Auto-mute every other tab the moment you join a Meet, Zoom, or Teams call.">
+  <meta property="og:title" content="MeetingFocus: Auto-mute every tab during video calls">
+  <meta property="og:description" content="Auto-mute every other browser tab and silence notifications the moment you join a Google Meet, Zoom, or Microsoft Teams call.">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://meetingfocus.app">
+  <meta property="og:url" content="https://meetingfocus.app/">
+  <meta property="og:site_name" content="MeetingFocus">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:image" content="https://meetingfocus.app/assets/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="MeetingFocus popup showing 5 tabs muted during a Google Meet call.">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="MeetingFocus: Auto-mute every tab during video calls">
+  <meta name="twitter:description" content="Auto-mute every other browser tab and silence notifications the moment you join a Meet, Zoom, or Teams call.">
+  <meta name="twitter:image" content="https://meetingfocus.app/assets/og-image.png">
+  <meta name="twitter:image:alt" content="MeetingFocus popup showing 5 tabs muted during a Google Meet call.">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "MeetingFocus",
+    "description": "Auto-mute every other browser tab and silence notifications the moment you join a Google Meet, Zoom, or Microsoft Teams call. Restores everything when the call ends.",
+    "url": "https://meetingfocus.app/",
+    "image": "https://meetingfocus.app/assets/og-image.png",
+    "applicationCategory": "BrowserApplication",
+    "operatingSystem": "Chrome",
+    "browserRequirements": "Requires Chrome 114 or later.",
+    "offers": [
+      {
+        "@type": "Offer",
+        "name": "Free",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      {
+        "@type": "Offer",
+        "name": "Pro (one-time unlock)",
+        "price": "9.99",
+        "priceCurrency": "USD"
+      }
+    ],
+    "publisher": {
+      "@type": "Organization",
+      "name": "Loophead Labs LLC",
+      "url": "https://loopheadlabs.com/"
+    },
+    "installUrl": "https://chromewebstore.google.com/detail/meetingfocus/iedoeoigjdlhoihohikfodmigajcakip"
+  }
+  </script>
 
   <style>
     :root {
@@ -280,11 +334,91 @@
     .footer-links { display: flex; gap: 22px; }
     .footer-links a { color: var(--ink-soft); }
 
+    .hero-shot {
+      margin: 44px auto 0;
+      max-width: 880px;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 10px 40px rgba(15, 23, 42, 0.15), 0 2px 6px rgba(15, 23, 42, 0.08);
+      border: 1px solid var(--line);
+      background: var(--surface);
+    }
+    .hero-shot img { display: block; width: 100%; height: auto; }
+
+    .section-head {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+    .section-head h2 {
+      margin: 0 0 8px;
+      font-size: 28px;
+      letter-spacing: -0.01em;
+    }
+    .section-head p {
+      margin: 0;
+      color: var(--ink-soft);
+    }
+    .visually-hidden {
+      position: absolute;
+      width: 1px; height: 1px;
+      padding: 0; margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    .faq {
+      padding: 72px 0;
+    }
+    .faq-list {
+      max-width: 760px;
+      margin: 0 auto;
+      display: grid;
+      gap: 12px;
+    }
+    .faq-item {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 0;
+      overflow: hidden;
+    }
+    .faq-item summary {
+      cursor: pointer;
+      padding: 18px 22px;
+      font-weight: 600;
+      font-size: 16px;
+      color: var(--ink);
+      list-style: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+    }
+    .faq-item summary::-webkit-details-marker { display: none; }
+    .faq-item summary::after {
+      content: "+";
+      color: var(--accent);
+      font-size: 22px;
+      font-weight: 400;
+      transition: transform 0.15s ease;
+    }
+    .faq-item[open] summary::after { transform: rotate(45deg); }
+    .faq-body {
+      padding: 0 22px 20px;
+      color: var(--ink-soft);
+      font-size: 15px;
+      line-height: 1.6;
+    }
+
     @media (max-width: 600px) {
       .hero { padding: 56px 0 40px; }
       .features { padding: 56px 0; }
       .pricing { padding: 48px 0 56px; }
+      .faq { padding: 56px 0; }
       .nav-links { display: none; }
+      .hero-shot { margin-top: 32px; }
     }
   </style>
 </head>
@@ -292,22 +426,25 @@
 
 <header>
   <div class="wrap nav">
-    <a href="/" class="brand">
-      <span class="brand-mark">M</span>
+    <a href="/" class="brand" aria-label="MeetingFocus home">
+      <span class="brand-mark" aria-hidden="true">M</span>
       <span>MeetingFocus</span>
     </a>
-    <nav class="nav-links">
+    <nav class="nav-links" aria-label="Primary">
       <a href="#features">Features</a>
       <a href="#pricing">Pricing</a>
+      <a href="#faq">FAQ</a>
       <a href="/privacy.html">Privacy</a>
     </nav>
   </div>
 </header>
 
-<section class="hero">
+<main>
+
+<section class="hero" aria-labelledby="hero-heading">
   <div class="wrap">
     <span class="eyebrow">Chrome Extension</span>
-    <h1>Stop scrambling to mute tabs<br>when a meeting starts.</h1>
+    <h1 id="hero-heading">Stop scrambling to mute tabs when a meeting starts.</h1>
     <p class="subhead">
       MeetingFocus auto-mutes every other browser tab and silences
       notifications the moment you join a Google Meet, Zoom, or Microsoft
@@ -320,12 +457,21 @@
       <a class="btn btn-secondary" href="#features">See how it works</a>
     </div>
     <div class="meta-line">Free to install. Pro features one-time $9.99.</div>
+    <figure class="hero-shot">
+      <img
+        src="/assets/meetingfocus-hero.png"
+        alt="MeetingFocus popup showing five tabs muted and a one-minute duration timer during a live Google Meet call."
+        width="1200"
+        height="750"
+        loading="eager"
+        decoding="async">
+    </figure>
   </div>
 </section>
 
-<section class="platforms">
+<section class="platforms" aria-labelledby="platforms-heading">
   <div class="wrap">
-    <div class="platforms-label">Works with</div>
+    <h2 id="platforms-heading" class="platforms-label">Works with</h2>
     <div class="platforms-list">
       <span>Google Meet</span>
       <span>Zoom</span>
@@ -334,8 +480,9 @@
   </div>
 </section>
 
-<section class="features" id="features">
+<section class="features" id="features" aria-labelledby="features-heading">
   <div class="wrap">
+    <h2 id="features-heading" class="visually-hidden">Features</h2>
     <div class="features-grid">
       <div class="feature">
         <div class="feature-icon">⚡</div>
@@ -402,6 +549,140 @@
     </div>
   </div>
 </section>
+
+<section class="faq" id="faq" aria-labelledby="faq-heading">
+  <div class="wrap">
+    <div class="section-head">
+      <h2 id="faq-heading">Frequently asked questions</h2>
+      <p>Quick answers about how MeetingFocus works and what it does not do.</p>
+    </div>
+    <div class="faq-list">
+      <details class="faq-item">
+        <summary>How does MeetingFocus auto-mute tabs when a Zoom or Google Meet call starts?</summary>
+        <div class="faq-body">
+          MeetingFocus watches for the tab patterns Google Meet, Zoom, and Microsoft Teams use when a call is active. The moment one of those tabs goes live, it mutes every other browser tab using Chrome's native tab-audio controls. When the meeting tab closes or leaves the call state, every muted tab is restored to exactly the state it was in before. No clicks, no setup.
+        </div>
+      </details>
+      <details class="faq-item">
+        <summary>Can it silence Slack, Gmail, and Discord notifications during a screen share?</summary>
+        <div class="faq-body">
+          Yes, with Pro. Pro blocks browser-level push notifications from Slack, Gmail, Discord, and any other site you have granted notifications to, for as long as a meeting is active. Nothing pops up mid-presentation. When the call ends, notifications are allowed again automatically.
+        </div>
+      </details>
+      <details class="faq-item">
+        <summary>Can I keep Spotify or YouTube Music playing through my meetings?</summary>
+        <div class="faq-body">
+          Yes. The allowlist lets you mark specific domains, like open.spotify.com, music.youtube.com, or any site you choose, as exempt from auto-mute. Those tabs keep playing while everything else is silenced. Free supports up to three allowlisted domains; Pro is unlimited.
+        </div>
+      </details>
+      <details class="faq-item">
+        <summary>Does it work with Microsoft Teams?</summary>
+        <div class="faq-body">
+          Yes. MeetingFocus detects Teams calls in Chrome, including teams.microsoft.com and teams.live.com. If you primarily use the Teams desktop app, MeetingFocus will still auto-mute all browser tabs the moment you join a call via the web client. Meet, Zoom web, and Teams web are all supported at parity.
+        </div>
+      </details>
+      <details class="faq-item">
+        <summary>Does MeetingFocus send my meeting data anywhere?</summary>
+        <div class="faq-body">
+          No. Everything runs on your device. There are no accounts, no server, no analytics, and no telemetry. Meeting history is stored locally in your browser and never leaves it. You can delete it at any time from the extension's settings page.
+        </div>
+      </details>
+      <details class="faq-item">
+        <summary>What are meeting profiles and when should I use them?</summary>
+        <div class="faq-body">
+          Meeting profiles are Pro-only named rulesets for different kinds of calls. A Standup profile might keep Slack audible because you actually want to hear pings. A Presentation profile mutes everything, blocks every notification, and keeps Spotify silent. A Client profile might allowlist only your CRM tab. You pick the profile when a call starts, or let MeetingFocus pick by domain rule.
+        </div>
+      </details>
+      <details class="faq-item">
+        <summary>Is the Pro upgrade really one-time? No subscription?</summary>
+        <div class="faq-body">
+          Correct. $9.99 once, lifetime Pro access on that browser account. No recurring charges, no renewals, no hidden trial conversions. If you uninstall and reinstall later, your Pro unlock restores from your email via ExtensionPay.
+        </div>
+      </details>
+      <details class="faq-item">
+        <summary>Does MeetingFocus work in Brave, Edge, or Arc?</summary>
+        <div class="faq-body">
+          Yes. Any Chromium-based browser that supports the Chrome Web Store can run MeetingFocus, including Microsoft Edge, Brave, Arc, and Vivaldi. Install it from the Chrome Web Store and it runs natively.
+        </div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How does MeetingFocus auto-mute tabs when a Zoom or Google Meet call starts?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "MeetingFocus watches for the tab patterns Google Meet, Zoom, and Microsoft Teams use when a call is active. The moment one of those tabs goes live, it mutes every other browser tab using Chrome's native tab-audio controls. When the meeting tab closes or leaves the call state, every muted tab is restored to exactly the state it was in before."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can it silence Slack, Gmail, and Discord notifications during a screen share?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, with Pro. Pro blocks browser-level push notifications from Slack, Gmail, Discord, and any other site you have granted notifications to, for as long as a meeting is active. Nothing pops up mid-presentation. When the call ends, notifications are allowed again automatically."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I keep Spotify or YouTube Music playing through my meetings?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. The allowlist lets you mark specific domains as exempt from auto-mute. Those tabs keep playing while everything else is silenced. Free supports up to three allowlisted domains; Pro is unlimited."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does MeetingFocus work with Microsoft Teams?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. MeetingFocus detects Teams calls in Chrome, including teams.microsoft.com and teams.live.com. Google Meet, Zoom web, and Teams web are all supported at parity."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does MeetingFocus send my meeting data anywhere?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Everything runs on your device. There are no accounts, no server, no analytics, and no telemetry. Meeting history is stored locally in your browser and never leaves it."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What are meeting profiles and when should I use them?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Meeting profiles are Pro-only named rulesets for different kinds of calls. A Standup profile might keep Slack audible. A Presentation profile mutes everything and blocks every notification. You pick the profile when a call starts, or let MeetingFocus pick by domain rule."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is the Pro upgrade really one-time with no subscription?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. $9.99 once, lifetime Pro access on that browser account. No recurring charges, no renewals, no hidden trial conversions."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does MeetingFocus work in Brave, Edge, or Arc?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Any Chromium-based browser that supports the Chrome Web Store can run MeetingFocus, including Microsoft Edge, Brave, Arc, and Vivaldi."
+      }
+    }
+  ]
+}
+</script>
+
+</main>
 
 <footer>
   <div class="wrap footer-row">
